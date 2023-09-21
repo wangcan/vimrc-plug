@@ -15,7 +15,6 @@
 "======================================================================
 " vim: set ts=4 sw=4 tw=78 noet :
 
-
 "----------------------------------------------------------------------
 " INSERT 模式下使用 EMACS 键位
 "----------------------------------------------------------------------
@@ -23,7 +22,6 @@ inoremap <c-a> <home>
 inoremap <c-e> <end>
 inoremap <c-d> <del>
 inoremap <c-_> <c-k>
-
 
 "----------------------------------------------------------------------
 " 设置 CTRL+HJKL 移动光标（INSERT 模式偶尔需要移动的方便些）
@@ -34,16 +32,15 @@ noremap <C-h> <left>
 noremap <C-j> <down>
 noremap <C-k> <up>
 noremap <C-l> <right>
-inoremap <C-h> <left>
+"inoremap <C-h> <left>
 inoremap <C-j> <down>
 inoremap <C-k> <up>
 inoremap <C-l> <right>
 
-
 "----------------------------------------------------------------------
 " 命令模式的快速移动
 "----------------------------------------------------------------------
-cnoremap <c-h> <left>
+"cnoremap <c-h> <left>
 cnoremap <c-j> <down>
 cnoremap <c-k> <up>
 cnoremap <c-l> <right>
@@ -53,7 +50,6 @@ cnoremap <c-f> <c-d>
 cnoremap <c-b> <left>
 cnoremap <c-d> <del>
 cnoremap <c-_> <c-k>
-
 
 "----------------------------------------------------------------------
 " <leader>+数字键 切换tab
@@ -68,7 +64,6 @@ noremap <silent><leader>7 7gt<cr>
 noremap <silent><leader>8 8gt<cr>
 noremap <silent><leader>9 9gt<cr>
 noremap <silent><leader>0 10gt<cr>
-
 
 "----------------------------------------------------------------------
 " ALT+N 切换 tab
@@ -93,7 +88,6 @@ inoremap <silent><m-7> <ESC>:tabn 7<cr>
 inoremap <silent><m-8> <ESC>:tabn 8<cr>
 inoremap <silent><m-9> <ESC>:tabn 9<cr>
 inoremap <silent><m-0> <ESC>:tabn 10<cr>
-
 
 " MacVim 允许 CMD+数字键快速切换标签
 if has("gui_macvim")
@@ -120,14 +114,11 @@ if has("gui_macvim")
 	inoremap <silent><d-0> <ESC>:tabn 10<cr>
 endif
 
-
-
 "----------------------------------------------------------------------
 " 缓存：插件 unimpaired 中定义了 [b, ]b 来切换缓存
 "----------------------------------------------------------------------
 noremap <silent> <leader>bn :bn<cr>
 noremap <silent> <leader>bp :bp<cr>
-
 
 "----------------------------------------------------------------------
 " TAB：创建，关闭，上一个，下一个，左移，右移
@@ -139,7 +130,6 @@ noremap <silent> <leader>tq :tabclose<cr>
 noremap <silent> <leader>tn :tabnext<cr>
 noremap <silent> <leader>tp :tabprev<cr>
 noremap <silent> <leader>to :tabonly<cr>
-
 
 " 左移 tab
 function! Tab_MoveLeft()
@@ -161,7 +151,6 @@ noremap <silent><leader>tl :call Tab_MoveLeft()<cr>
 noremap <silent><leader>tr :call Tab_MoveRight()<cr>
 noremap <silent><m-left> :call Tab_MoveLeft()<cr>
 noremap <silent><m-right> :call Tab_MoveRight()<cr>
-
 
 "----------------------------------------------------------------------
 " ALT 键移动增强
@@ -186,7 +175,6 @@ cnoremap <m-l> <c-right>
 " ALT+y 删除到行末
 noremap <m-y> d$
 inoremap <m-y> <c-\><c-o>d$
-
 
 "----------------------------------------------------------------------
 " 窗口切换：ALT+SHIFT+hjkl
@@ -221,8 +209,6 @@ elseif has('nvim')
 	tnoremap <m-q> <c-\><c-n>
 endif
 
-
-
 "----------------------------------------------------------------------
 " 编译运行 C/C++ 项目
 " 详细见：http://www.skywind.me/blog/archives/2084
@@ -230,36 +216,26 @@ endif
 
 " 自动打开 quickfix window ，高度为 6
 let g:asyncrun_open = 6
-
 " 任务结束时候响铃提醒
 let g:asyncrun_bell = 1
-
 " 设置 F10 打开/关闭 Quickfix 窗口
 nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
-
 " F9 编译 C/C++ 文件
 nnoremap <silent> <F9> :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
-
 " F5 运行文件
 nnoremap <silent> <F5> :call ExecuteFile()<cr>
-
 " F7 编译项目
 nnoremap <silent> <F7> :AsyncRun -cwd=<root> make <cr>
-
 " F8 运行项目
 nnoremap <silent> <F8> :AsyncRun -cwd=<root> -raw make run <cr>
-
 " F6 测试项目
 nnoremap <silent> <F6> :AsyncRun -cwd=<root> -raw make test <cr>
-
 " 更新 cmake
 nnoremap <silent> <F4> :AsyncRun -cwd=<root> cmake . <cr>
-
 " Windows 下支持直接打开新 cmd 窗口运行
 if has('win32') || has('win64')
 	nnoremap <silent> <F8> :AsyncRun -cwd=<root> -mode=4 make run <cr>
 endif
-
 
 "----------------------------------------------------------------------
 " F5 运行当前文件：根据文件类型判断方法，并且输出到 quickfix 窗口
@@ -306,8 +282,6 @@ function! ExecuteFile()
 	endif
 endfunc
 
-
-
 "----------------------------------------------------------------------
 " F2 在项目目录下 Grep 光标下单词，默认 C/C++/Py/Js ，扩展名自己扩充
 " 支持 rg/grep/findstr ，其他类型可以自己扩充
@@ -329,5 +303,3 @@ else
 				\ --include='*.js' --include='*.vim'
 				\ '<root>' <cr>
 endif
-
-

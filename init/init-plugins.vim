@@ -8,8 +8,6 @@
 "======================================================================
 " vim: set ts=4 sw=4 tw=78 noet :
 
-
-
 "----------------------------------------------------------------------
 " 默认情况下的分组，可以再前面覆盖之
 "----------------------------------------------------------------------
@@ -18,7 +16,6 @@ if !exists('g:bundle_group')
 	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
 	let g:bundle_group += ['leaderf']
 endif
-
 
 "----------------------------------------------------------------------
 " 计算当前 vim-init 的子路径
@@ -30,12 +27,10 @@ function! s:path(path)
 	return substitute(path, '\\', '/', 'g')
 endfunc
 
-
 "----------------------------------------------------------------------
 " 在 ~/.vim/bundles 下安装插件
 "----------------------------------------------------------------------
 call plug#begin(get(g:, 'bundle_home', '~/.vim/bundles'))
-
 
 "----------------------------------------------------------------------
 " 默认插件 
@@ -43,16 +38,12 @@ call plug#begin(get(g:, 'bundle_home', '~/.vim/bundles'))
 
 " 全文快速移动，<leader><leader>f{char} 即可触发
 Plug 'easymotion/vim-easymotion'
-
 " 文件浏览器，代替 netrw
 Plug 'justinmk/vim-dirvish'
-
 " 表格对齐，使用命令 Tabularize
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
-
 " Diff 增强，支持 histogram / patience 等更科学的 diff 算法
 Plug 'chrisbra/vim-diff-enhanced'
-
 
 "----------------------------------------------------------------------
 " Dirvish 设置：自动排序并隐藏文件，同时定位到相关文件
@@ -85,37 +76,27 @@ augroup MyPluginSetup
 	autocmd FileType dirvish call s:setup_dirvish()
 augroup END
 
-
 "----------------------------------------------------------------------
 " 基础插件
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'basic') >= 0
-
 	" 展示开始画面，显示最近编辑过的文件
 	Plug 'mhinz/vim-startify'
-
 	" 一次性安装一大堆 colorscheme
 	Plug 'flazz/vim-colorschemes'
-
 	" 支持库，给其他插件用的函数库
 	Plug 'xolox/vim-misc'
-
 	" 用于在侧边符号栏显示 marks （ma-mz 记录的位置）
 	Plug 'kshenoy/vim-signature'
-
 	" 用于在侧边符号栏显示 git/svn 的 diff
 	Plug 'mhinz/vim-signify'
-
 	" 根据 quickfix 中匹配到的错误信息，高亮对应文件的错误行
 	" 使用 :RemoveErrorMarkers 命令或者 <space>ha 清除错误
 	Plug 'mh21/errormarker.vim'
-
 	" 使用 ALT+e 会在不同窗口/标签上显示 A/B/C 等编号，然后字母直接跳转
 	Plug 't9md/vim-choosewin'
-
 	" 提供基于 TAGS 的定义预览，函数参数预览，quickfix 预览
 	Plug 'skywind3000/vim-preview'
-
 	" Git 支持
 	Plug 'tpope/vim-fugitive'
 
@@ -143,30 +124,22 @@ if index(g:bundle_group, 'basic') >= 0
 			\}
 endif
 
-
 "----------------------------------------------------------------------
 " 增强插件
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'enhanced') >= 0
-
 	" 用 v 选中一个区域后，ALT_+/- 按分隔符扩大/缩小选区
 	Plug 'terryma/vim-expand-region'
-
 	" 快速文件搜索
 	Plug 'junegunn/fzf'
-
 	" 给不同语言提供字典补全，插入模式下 c-x c-k 触发
 	Plug 'asins/vim-dict'
-
 	" 使用 :FlyGrep 命令进行实时 grep
 	Plug 'wsdjeg/FlyGrep.vim'
-
 	" 使用 :CtrlSF 命令进行模仿 sublime 的 grep
 	Plug 'dyng/ctrlsf.vim'
-
 	" 配对括号和引号自动补全
 	Plug 'Raimondi/delimitMate'
-
 	" 提供 gist 接口
 	Plug 'lambdalisue/vim-gista', { 'on': 'Gista' }
 	
@@ -175,17 +148,14 @@ if index(g:bundle_group, 'enhanced') >= 0
 	map <m--> <Plug>(expand_region_shrink)
 endif
 
-
 "----------------------------------------------------------------------
 " 自动生成 ctags/gtags，并提供自动索引功能
 " 不在 git/svn 内的项目，需要在项目根目录 touch 一个空的 .root 文件
 " 详细用法见：https://zhuanlan.zhihu.com/p/36279445
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'tags') >= 0
-
 	" 提供 ctags/gtags 后台数据库自动更新功能
 	Plug 'skywind3000/vim-gutentags'
-
 	" 提供 GscopeFind 命令并自动处理好 gtags 数据库切换
 	" 支持光标移动到符号名上：<leader>cg 查看定义，<leader>cs 查看引用
 	Plug 'skywind3000/gutentags_plus'
@@ -228,25 +198,18 @@ endif
 " 文本对象：textobj 全家桶
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'textobj') >= 0
-
 	" 基础插件：提供让用户方便的自定义文本对象的接口
 	Plug 'kana/vim-textobj-user'
-
 	" indent 文本对象：ii/ai 表示当前缩进，vii 选中当缩进，cii 改写缩进
 	Plug 'kana/vim-textobj-indent'
-
 	" 语法文本对象：iy/ay 基于语法的文本对象
 	Plug 'kana/vim-textobj-syntax'
-
 	" 函数文本对象：if/af 支持 c/c++/vim/java
 	Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java'] }
-
 	" 参数文本对象：i,/a, 包括参数或者列表元素
 	Plug 'sgur/vim-textobj-parameter'
-
 	" 提供 python 相关文本对象，if/af 表示函数，ic/ac 表示类
 	Plug 'bps/vim-textobj-python', {'for': 'python'}
-
 	" 提供 uri/url 的文本对象，iu/au 表示
 	Plug 'jceb/vim-textobj-uri'
 endif
@@ -256,29 +219,21 @@ endif
 " 文件类型扩展
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'filetypes') >= 0
-
 	" powershell 脚本文件的语法高亮
 	Plug 'pprovost/vim-ps1', { 'for': 'ps1' }
-
 	" lua 语法高亮增强
 	Plug 'tbastos/vim-lua', { 'for': 'lua' }
-
 	" C++ 语法高亮增强，支持 11/14/17 标准
 	Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
-
 	" 额外语法文件
 	Plug 'justinmk/vim-syntax-extra', { 'for': ['c', 'bison', 'flex', 'cpp'] }
-
 	" python 语法文件增强
 	Plug 'vim-python/python-syntax', { 'for': ['python'] }
-
 	" rust 语法增强
 	Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-
 	" vim org-mode 
 	Plug 'jceb/vim-orgmode', { 'for': 'org' }
 endif
-
 
 "----------------------------------------------------------------------
 " airline
@@ -301,7 +256,6 @@ if index(g:bundle_group, 'airline') >= 0
 	let g:airline#extensions#vimagit#enabled = 0
 endif
 
-
 "----------------------------------------------------------------------
 " NERDTree
 "----------------------------------------------------------------------
@@ -316,7 +270,6 @@ if index(g:bundle_group, 'nerdtree') >= 0
 	noremap <space>nm :NERDTreeMirror<cr>
 	noremap <space>nt :NERDTreeToggle<cr>
 endif
-
 
 "----------------------------------------------------------------------
 " LanguageTool 语法检查
@@ -333,7 +286,6 @@ if index(g:bundle_group, 'grammer') >= 0
 	map <space>rn <Plug>(grammarous-move-to-next-error)
 	map <space>rp <Plug>(grammarous-move-to-previous-error)
 endif
-
 
 "----------------------------------------------------------------------
 " ale：动态语法检查
@@ -401,7 +353,6 @@ if index(g:bundle_group, 'ale') >= 0
 	endif
 endif
 
-
 "----------------------------------------------------------------------
 " echodoc：搭配 YCM/deoplete 在底部显示函数参数
 "----------------------------------------------------------------------
@@ -410,7 +361,6 @@ if index(g:bundle_group, 'echodoc') >= 0
 	set noshowmode
 	let g:echodoc#enable_at_startup = 1
 endif
-
 
 "----------------------------------------------------------------------
 " LeaderF：CtrlP / FZF 的超级代替者，文件模糊匹配，tags/函数名 选择
@@ -422,28 +372,20 @@ if index(g:bundle_group, 'leaderf') >= 0
 
 		" CTRL+p 打开文件模糊匹配
 		let g:Lf_ShortcutF = '<c-p>'
-
 		" ALT+n 打开 buffer 模糊匹配
 		let g:Lf_ShortcutB = '<m-n>'
-
 		" CTRL+n 打开最近使用的文件 MRU，进行模糊匹配
 		noremap <c-n> :LeaderfMru<cr>
-
 		" ALT+p 打开函数列表，按 i 进入模糊匹配，ESC 退出
 		noremap <m-p> :LeaderfFunction!<cr>
-
 		" ALT+SHIFT+p 打开 tag 列表，i 进入模糊匹配，ESC退出
 		noremap <m-P> :LeaderfBufTag!<cr>
-
 		" ALT+n 打开 buffer 列表进行模糊匹配
 		noremap <m-n> :LeaderfBuffer<cr>
-
 		" ALT+m 全局 tags 模糊匹配
 		noremap <m-m> :LeaderfTag<cr>
-
 		" 最大历史文件保存 2048 个
 		let g:Lf_MruMaxFiles = 2048
-
 		" ui 定制
 		let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 
@@ -455,7 +397,6 @@ if index(g:bundle_group, 'leaderf') >= 0
 
 		" 显示绝对路径
 		let g:Lf_ShowRelativePath = 0
-
 		" 隐藏帮助
 		let g:Lf_HideHelp = 1
 
@@ -485,7 +426,6 @@ if index(g:bundle_group, 'leaderf') >= 0
 	else
 		" 不支持 python ，使用 CtrlP 代替
 		Plug 'ctrlpvim/ctrlp.vim'
-
 		" 显示函数列表的扩展插件
 		Plug 'tacahiroy/ctrlp-funky'
 
@@ -505,25 +445,19 @@ if index(g:bundle_group, 'leaderf') >= 0
 
 		" CTRL+p 打开文件模糊匹配
 		noremap <c-p> :CtrlP<cr>
-
 		" CTRL+n 打开最近访问过的文件的匹配
 		noremap <c-n> :CtrlPMRUFiles<cr>
-
 		" ALT+p 显示当前文件的函数列表
 		noremap <m-p> :CtrlPFunky<cr>
-
 		" ALT+n 匹配 buffer
 		noremap <m-n> :CtrlPBuffer<cr>
 	endif
 endif
 
-
 "----------------------------------------------------------------------
 " 结束插件安装
 "----------------------------------------------------------------------
 call plug#end()
-
-
 
 "----------------------------------------------------------------------
 " YouCompleteMe 默认设置：YCM 需要你另外手动编译安装
@@ -548,7 +482,6 @@ let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
-
 
 "----------------------------------------------------------------------
 " Ycm 白名单（非名单内文件不启用 YCM），避免打开个 1MB 的 txt 分析半天
@@ -607,5 +540,3 @@ let g:ycm_filetype_whitelist = {
 			\ "zimbu":1,
 			\ "ps1":1,
 			\ }
-
-

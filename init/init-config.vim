@@ -8,7 +8,6 @@
 "======================================================================
 " vim: set ts=4 sw=4 tw=78 noet :
 
-
 "----------------------------------------------------------------------
 " 有 tmux 何没有的功能键超时（毫秒）
 "----------------------------------------------------------------------
@@ -17,7 +16,6 @@ if $TMUX != ''
 elseif &ttimeoutlen > 80 || &ttimeoutlen <= 0
 	set ttimeoutlen=80
 endif
-
 
 "----------------------------------------------------------------------
 " 终端下允许 ALT，详见：http://www.skywind.me/blog/archives/2021
@@ -42,7 +40,6 @@ if has('nvim') == 0 && has('gui_running') == 0
 	endfor
 endif
 
-
 "----------------------------------------------------------------------
 " 终端下功能键设置
 "----------------------------------------------------------------------
@@ -51,7 +48,6 @@ function! s:key_escape(name, code)
 		exec "set ".a:name."=\e".a:code
 	endif
 endfunc
-
 
 "----------------------------------------------------------------------
 " 功能键终端码矫正
@@ -73,7 +69,6 @@ call s:key_escape('<S-F10>', '[21;2~')
 call s:key_escape('<S-F11>', '[23;2~')
 call s:key_escape('<S-F12>', '[24;2~')
 
-
 "----------------------------------------------------------------------
 " 防止tmux下vim的背景色显示异常
 " Refer: http://sunaku.github.io/vim-256color-bce.html
@@ -85,32 +80,24 @@ if &term =~ '256color' && $TMUX != ''
 	set t_ut=
 endif
 
-
 "----------------------------------------------------------------------
 " 备份设置
 "----------------------------------------------------------------------
 
 " 允许备份
 set backup
-
 " 保存时备份
 set writebackup
-
 " 备份文件地址，统一管理
 set backupdir=~/.vim/tmp
-
 " 备份文件扩展名
 set backupext=.bak
-
 " 禁用交换文件
 set noswapfile
-
 " 禁用 undo文件
 set noundofile
-
 " 创建目录，并且忽略可能出现的警告
 silent! call mkdir(expand('~/.vim/tmp'), "p", 0755)
-
 
 "----------------------------------------------------------------------
 " 配置微调
@@ -142,8 +129,6 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
           \ | wincmd p | diffthis
 endif
-
-
 
 "----------------------------------------------------------------------
 " 文件类型微调
@@ -179,5 +164,3 @@ augroup InitFileTypesGroup
 	au BufNewFile,BufRead *.vl setlocal filetype=verilog
 
 augroup END
-
-

@@ -32,6 +32,8 @@ set ttimeout
 set ttimeoutlen=50
 " 显示光标位置
 set ruler
+" auto read when file is changed from outside
+set autoread
 
 "----------------------------------------------------------------------
 " 搜索设置
@@ -55,22 +57,24 @@ if has('multi_byte')
 	" 文件默认编码
 	set fileencoding=utf-8
 	" 打开文件时自动尝试下面顺序的编码
-	set fileencodings=ucs-bom,utf-8,gbk,gb18030,big5,euc-jp,latin1
+	set fileencodings=ucs-bom,utf-8,gbk,gb2312,gb18030,big5,euc-jp,latin1
 endif
 
 "----------------------------------------------------------------------
 " 允许 Vim 自带脚本根据文件类型自动设置缩进等
 "----------------------------------------------------------------------
 if has('autocmd')
+	" 开启文件类型检查，并且载入与该类型对应的缩进规则。比如，如果编辑的是.py文件，Vim 就是会找 Python 的缩进规则~/.vim/indent/python.vim
+    " Enable filetype detection Enable filetype-specific indenting Enable filetype-specific plugins
 	filetype plugin indent on
 endif
 
 "----------------------------------------------------------------------
 " 语法高亮设置
 "----------------------------------------------------------------------
-if has('syntax')  
-	syntax enable 
-	syntax on 
+if has('syntax')
+	syntax enable
+	syntax on
 endif
 
 "----------------------------------------------------------------------
@@ -90,7 +94,9 @@ set lazyredraw
 " 错误格式
 set errorformat+=[%f:%l]\ ->\ %m,[%f:%l]:%m
 " 设置分隔符可视
-set listchars=tab:\|\ ,trail:.,extends:>,precedes:<
+"set listchars=tab:\|\ ,trail:.,extends:>,precedes:<
+"set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+set listchars=tab:\|\ ,trail:☠,extends:>,precedes:<
 " 设置 tags：当前文件所在目录往上向根目录搜索直到碰到 .tags 文件
 " 或者 Vim 当前目录包含 .tags 文件
 set tags=./.tags;,.tags

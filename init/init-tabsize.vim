@@ -12,12 +12,13 @@
 " 默认缩进模式（可以后期覆盖）
 "----------------------------------------------------------------------
 
-" 设置缩进宽度
+" 设置缩进宽度 shiftwidth=4
 set sw=4
-" 设置 TAB 宽度
+" 设置 TAB 宽度 tabstop=4
 set ts=4
-" 禁止展开 tab (noexpandtab)
-set noet
+" 禁止展开 tab (noexpandtab) DO-NOT replace <TAB> with spaces
+"set noet
+set expandtab
 " 如果后面设置了 expandtab 那么展开 tab 为多少字符
 set softtabstop=4
 

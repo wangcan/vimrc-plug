@@ -15,6 +15,7 @@ if !exists('g:bundle_group')
 	let g:bundle_group = ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
 	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
 	let g:bundle_group += ['leaderf']
+	let g:bundle_group += ['php']
 endif
 
 "----------------------------------------------------------------------
@@ -482,6 +483,46 @@ if index(g:bundle_group, 'leaderf') >= 0
 		" ALT+n 匹配 buffer
 		noremap <m-n> :CtrlPBuffer<cr>
 	endif
+endif
+
+if index(g:bundle_group, 'php') >= 0
+    Plug 'stephpy/vim-php-cs-fixer'
+    Plug 'arnaud-lb/vim-php-namespace'
+    Plug 'shawncplus/phpcomplete.vim'
+    "Plug 'vim-scripts/PDV--phpDocumentor-for-Vim'
+    "Plug 'erikfercak/php-search-doc'
+
+    autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+    "---------------------------------------------
+    " for PHP programming
+    "---------------------------------------------
+    autocmd FileType php set expandtab shiftwidth=4 tabstop=4 softtabstop=4
+    autocmd FileType php set makeprg=php\ -l\ %
+    autocmd FileType php set errorformat=%m\ in\ %f\ on\ line\ %l
+    
+    " --- php-search-doc, vim-jquery-doc
+    let g:php_search_doc_command = 'open'
+    let g:php_search_doc_function_mapping='<Leader>pf'
+    let g:php_search_doc_manual_mapping='<Leader>pm'
+    
+    "--------------------
+    " for using php-cs-fixer
+    "--------------------
+    nnoremap <silent><leader>pcd :call PhpCsFixerFixDirectory()<CR>
+    nnoremap <silent><leader>pcf :call PhpCsFixerFixFile()<CR>
+    
+    "--------------------
+    " insert php namespace
+    "--------------------
+    imap <buffer> <leader><Leader>u <C-O>:call PhpInsertUse()<CR>
+    map <buffer> <leader><Leader>u :call PhpInsertUse()<CR>
+    
+    "--------------------
+    " For phpDocumentor (pdv)
+    "--------------------
+    inoremap <leader>pd <ESC>:call PhpDocSingle()<CR>i 
+    nnoremap <leader>pd :call PhpDocSingle()<CR> 
+    vnoremap <leader>pd :call PhpDocRange()<CR> 
 endif
 
 "----------------------------------------------------------------------

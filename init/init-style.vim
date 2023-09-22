@@ -17,6 +17,8 @@
 set laststatus=2
 " 总是显示行号
 set number
+" 突出显示当前行
+set cursorline
 " 总是显示侧边栏（用于显示 mark/gitdiff/诊断信息）
 set signcolumn=yes
 " 总是显示标签栏
@@ -40,10 +42,10 @@ set background=dark
 " 允许 256 色
 set t_Co=256
 " 设置颜色主题，会在所有 runtimepaths 的 colors 目录寻找同名配置
+color evening
 "color eclipse2
 "color paradox
-color desert256
-
+"color desert256
 "color desert
 "color dracula
 "color gruvbox

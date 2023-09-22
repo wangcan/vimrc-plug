@@ -261,16 +261,16 @@ endif
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'nerdtree') >= 0
 	Plug 'scrooloose/nerdtree', {'on': ['NERDTree', 'NERDTreeFocus', 'NERDTreeToggle', 'NERDTreeCWD', 'NERDTreeFind'] }
+    Plug 'preservim/nerdcommenter'
 	Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    Plug 'vim-scripts/winmanager'
     Plug 'fholgado/minibufexpl.vim'
-	let g:NERDTreeMinimalUI = 1
-	let g:NERDTreeDirArrows = 1
-	let g:NERDTreeHijackNetrw = 0
-	noremap <space>nn :NERDTree<cr>
-	noremap <space>no :NERDTreeFocus<cr>
-	noremap <space>nm :NERDTreeMirror<cr>
-	noremap <space>nt :NERDTreeToggle<cr>
+    let g:NERDTreeMinimalUI = 1
+    let g:NERDTreeDirArrows = 1
+    let g:NERDTreeHijackNetrw = 0
+    noremap <space>nn :NERDTree<cr>
+    noremap <space>no :NERDTreeFocus<cr>
+    noremap <space>nm :NERDTreeMirror<cr>
+    noremap <space>nt :NERDTreeToggle<cr>
 
 " --- NERDTree
 "nnoremap <silent> <F3> :NERDTreeToggle<CR>
@@ -284,7 +284,9 @@ let NERDSpaceDelims=1       " 让注释符与语句之间留一个空格
 let NERDCompactSexyComs=1   " 多行注释时样子更好看
 let g:NERDTree_title = "NERDTree"
 function! NERDTree_Start()
-  exe 'NERDTree'
+  "exe 'NERDTree'
+	let curBufNum=bufnr()
+	exe 'NERDTree | bd ' . curBufNum
 endfunction
 function! NERDTree_IsValid()
   return 1
@@ -297,19 +299,6 @@ let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1   
 "let g:miniBufExplorerMoreThanOne=1         "自动打开  
 
-" winmanager   
-let g:winManagerWindowLayout='NERDTree'  
-"let g:winManagerWindowLayout='NERDTree|TagList,BufExplorer'  
-"let g:winManagerWindowLayout = 'FileExplorer|TagList'  
-"let g:winManagerWindowLayout = 'FileExplorer'  
-let g:winManagerWidth = 30
-let g:defaultExplorer = 0  
-let g:AutoOpenWinManager = 1
-"nmap wm :WMToggle<cr>:q<cr>  
-nmap <silent> wm :if IsWinManagerVisible() <BAR> WMToggle<CR> <BAR> else <BAR> WMToggle<CR>:q<CR> endif <CR>
-"nmap <C-W><C-F> :FirstExplorerWindow<cr>  
-"nmap <C-W><C-B> :BottomExplorerWindow<cr>  
-"autocmd BufWinEnter \[Buf\ List\] setl nonumber 
 endif
 
 "----------------------------------------------------------------------

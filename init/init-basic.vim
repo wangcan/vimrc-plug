@@ -34,6 +34,8 @@ set ttimeoutlen=50
 set ruler
 " auto read when file is changed from outside
 set autoread
+" 自动折行，即太长的行分成几行显示。
+set wrap
 
 "----------------------------------------------------------------------
 " 搜索设置

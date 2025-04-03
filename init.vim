@@ -35,6 +35,7 @@ LoadScript init/init-config.vim
 LoadScript init/init-tabsize.vim
 " 插件加载
 LoadScript init/init-plugins.vim
+LoadScript init/init-deepseek.vim
 " 界面样式
 LoadScript init/init-style.vim
 " 自定义按键

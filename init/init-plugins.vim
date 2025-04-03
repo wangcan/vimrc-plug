@@ -47,6 +47,11 @@ Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 " Diff 增强，支持 histogram / patience 等更科学的 diff 算法
 Plug 'chrisbra/vim-diff-enhanced'
 
+Plug 'github/copilot.vim'
+Plug 'junegunn/fzf.vim'   " 可选，用于结果展示
+Plug 'nicwest/vim-http'  " 替代品
+Plug 'diepm/vim-rest-console'  " 支持 REST API
+
 "----------------------------------------------------------------------
 " Dirvish 设置：自动排序并隐藏文件，同时定位到相关文件
 " 这个排序函数可以将目录排在前面，文件排在后面，并且按照字母顺序排序
